@@ -1,0 +1,65 @@
+class payment;
+class creditCard;
+class payPAl;
+class debitCard;
+
+//classes
+
+class payment {
+protected:
+    int payid;
+    string payMethod;
+    int payAmount;
+public:
+    payment(int Ppayid, string Ppaymethod, int PpayAmount);
+    void displayPayment();
+};
+
+class creditCard :public payment {
+private:
+    int creNo;
+    int cvNo;
+    string expdate;
+public:
+
+    creditCard(int Ppayid, string Ppaymethod, int PpayAmount, int CNo, int CVNo, string expDate);
+    void dotrasaction();
+};
+
+class payPal : public payment {
+private:
+    int accId;
+public:
+    payPal(int AccId,int Ppayid, string Ppaymethod, int PpayAmount);
+    void dotrasaction();
+};
+
+class debitCard :public payment {
+private:
+    int debiNo;
+    int cvNo;
+    string type;
+public:
+    debitCard(int Ppayid, string Ppaymethod, int PpayAmount, int DebNo, int CVno,string dtype);
+    void dotrasaction();
+};
+
+//main program
+
+    payment* p1;
+    p1 = new payment(002, "credit card", 2500);
+    p1->displayPayment();
+    
+    delete p1;
+
+    creditCard* C1;
+    C1 = new creditCard(001, "credit", 1278,65781243, 345, "2022");
+    delete C1;
+
+    payPal* pp;
+    pp = new payPal(54863289, 78, "PayPal", 1450);
+    delete pp;
+
+    debitCard* db;
+    db = new debitCard(003, "debit", 13000, 45637282, 345, "VISA");
+    delete db;
