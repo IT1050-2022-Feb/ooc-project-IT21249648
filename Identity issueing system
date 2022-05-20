@@ -1,0 +1,701 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// classes
+//ridmi
+class form;
+class ID;
+class visitor;
+class RegisterdCustomer;
+
+//gevindu
+class service;
+class oneDay;
+class NormalDay;
+
+//sasika
+class payment;
+class creditCard;
+class payPAl;
+class debitCard;
+
+//Inuka
+class accountant;
+class dataAnalysis;
+class admin;
+class feedback;
+
+
+
+class visitor {
+private:
+    char name[20];
+    string telNo;
+    int age;
+
+public:
+    visitor(char Name[20], string Vtelno, int Vage);
+    void displayVisitorDetails();
+    ~visitor();
+};
+
+class accountant {
+private:
+    string accid;
+    char accName[20];
+    string paymentId;
+public:
+    accountant(string Accid, const char AccName[20]);
+    void displayaccountantdetails();
+    void validatepayment(string Payid);
+    ~accountant();
+};
+
+class dataAnalysis {
+private:
+    string dataId;
+    string dataName;
+    char cusName[20];
+    int cusId;
+    string cusServiceType;
+
+
+public:
+    dataAnalysis(string DataId, string DataName);
+    void collectCustomerDetails(const char cusName[20],int CusID,string Stype);
+    void displayCustomerDetails();
+    ~dataAnalysis();
+};
+
+
+class dataReport {
+private:
+    int repoId;
+    string type;
+    string repoDescrip;
+public:
+    dataReport(int Repoid,string Type,string repoDes);
+    void displayDataReport();
+    ~dataReport();
+};
+
+
+
+class approvedReport {
+private:
+   
+    int approvedId;
+    string dataRepoDetail;
+    string approveDescrip;
+
+
+public:
+    approvedReport(int ApprovedId, string DataRepoDetail, string ApproveDescrip);
+    void displayapprovedReport();
+    ~approvedReport();
+};
+
+class admin {
+private:
+    int adminId ;
+    string adminName;
+    string customerId;
+public:
+    admin(int AdminId, string AdminName);
+    void replyfeedbacks(string CustomerId);
+    ~admin();
+};
+
+
+class feedback {
+private:
+    int feedId;
+    string customerName;
+public:
+    feedback(int FeedId, string CustomerName);
+    void displayFeedbacks();
+    ~feedback();
+};
+
+class identityProvider {
+private:
+    int providerId;
+    string providerName;
+    string customerName;
+    int customerId;
+    string custemail;
+public:
+    identityProvider(int pId, string pName);
+    void displayApprovedReport(string CustomerName,int CustomerId);
+    void ValidateIDs(string Custemail);
+    ~identityProvider();
+};
+
+class ID {
+private:
+    int id;
+    char gender[2];
+    char first_name[10];
+    char last_name[20];
+    string adress;
+
+
+
+public:
+    ID(int Id, const char Gender[2], const char First_name[10], const char Last_name[20], string Adress);
+    void displayIdDetails();
+
+};
+
+
+class RegisterdCustomer {
+private:
+
+    int custId;
+    string custAdress;
+    string custTelno;
+    int custAge;
+    string type;
+    string fb;
+    string name;
+    int pid;
+
+public:
+    RegisterdCustomer(int Ctid, string Ctddress, string CtTelno, int Ctage);
+    void displayRegisterDetails();
+    void getService(string Type);
+    void makePayment(int Pid);
+    void provideFeedback();
+    void getIdDetails();
+    ~RegisterdCustomer();
+};
+class form {
+private:
+    int formNo;
+    string Adress;
+    string Telno;
+    int Age;
+    string Servicetype;
+
+public:
+    form(int FormNo);
+    void FormDetails(string adress, string telno, int age, string Stype);
+    void displayFormDetails();
+};
+
+class payment {
+protected:
+    int payid;
+    string payMethod;
+    int payAmount;
+public:
+    payment(int Ppayid, string Ppaymethod, int PpayAmount);
+    void displayPayment();
+};
+
+class creditCard :public payment {
+private:
+    int creNo;
+    int cvNo;
+    string expdate;
+public:
+
+    creditCard(int Ppayid, string Ppaymethod, int PpayAmount, int CNo, int CVNo, string expDate);
+    void dotrasaction();
+};
+
+class payPal : public payment {
+private:
+    int accId;
+public:
+    payPal(int AccId,int Ppayid, string Ppaymethod, int PpayAmount);
+    void dotrasaction();
+};
+
+class debitCard :public payment {
+private:
+    int debiNo;
+    int cvNo;
+    string type;
+public:
+    debitCard(int Ppayid, string Ppaymethod, int PpayAmount, int DebNo, int CVno,string dtype);
+    void dotrasaction();
+};
+
+
+class service {
+protected:
+    string serviceType;
+    int serviceNo;
+
+public:
+    service(string stype, int sNo);
+    void displayService();
+};
+
+class normalDay : public service {
+private:
+    string service_description;
+public:
+    normalDay(string stype, int sNo, string service_dec);
+    void selectService();
+
+};
+
+class oneDay : public service {
+private:
+    string service_description;
+public:
+    oneDay(string stype, int sNo,string service_dec);
+    void selectService();
+};
+
+
+visitor::visitor(char Name[20], string Vtelno, int Vage)
+{
+    strcpy(name , Name) ;
+    telNo = Vtelno;
+    age = Vage;
+}
+
+void visitor::displayVisitorDetails()
+{
+    cout << "name:" << name <<endl;
+    cout << "tel-no:" << telNo << endl;
+    cout << "age:" << age << endl;
+    
+}
+
+visitor::~visitor()
+{
+    cout << "visitor destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+accountant::accountant(string Accid, const char AccName[20])
+{
+    accid = Accid;
+    strcpy(accName, AccName);
+}
+
+void accountant::displayaccountantdetails()
+{
+    cout << "Id:" << accid << endl;
+    cout << "name:" << accName << endl;
+    
+}
+
+void accountant::validatepayment(string Payid)
+{
+    paymentId = Payid;
+}
+
+accountant::~accountant()
+{
+    cout << "Accountant destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+dataAnalysis::dataAnalysis(string DataId, string DataName)
+{
+    dataId = DataId;
+    dataId = DataId;
+}
+
+void dataAnalysis::collectCustomerDetails(const char CusName[20], int CusID, string Stype)
+{
+    strcpy(cusName, CusName);
+    cusId = CusID;
+    cusServiceType = Stype;
+
+}
+
+void dataAnalysis::displayCustomerDetails()
+{
+    cout << "customer name:" << cusName << endl;
+    cout << "customer id:" << cusId << endl;
+    cout << "customer service type:" << cusServiceType << endl;
+}
+
+dataAnalysis::~dataAnalysis()
+{
+    cout << "data analysis destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+
+}
+
+dataReport::dataReport(int Repoid, string Type, string repoDes)
+{
+    repoId = Repoid;
+    type = Type;
+    repoDescrip = repoDes;
+}
+
+void dataReport::displayDataReport()
+{
+    cout << "data report Id:" << repoId << endl;
+    cout << "data report type:" << type << endl;
+    cout << "data rport description:" << repoDescrip << endl;
+
+}
+
+dataReport::~dataReport()
+{
+    cout << "data report destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+
+}
+
+approvedReport::approvedReport(int ApprovedId, string DataRepoDetail, string ApproveDescrip)
+{
+    approvedId = ApprovedId;
+    dataRepoDetail = DataRepoDetail;
+    approveDescrip = ApproveDescrip;
+}
+
+void approvedReport::displayapprovedReport()
+{
+    cout << "approved report Id:" << approvedId << endl;
+    cout << "data report details:" << dataRepoDetail << endl;
+    cout << "approved rport description:" << approveDescrip << endl;
+
+}
+
+approvedReport::~approvedReport()
+{
+    cout << "approved report destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+
+}
+
+admin::admin(int AdminId, string AdminName)
+{
+    adminId = AdminId;
+    adminName = AdminName;
+}
+
+void admin::replyfeedbacks(string CustomerId)
+{
+    customerId = CustomerId;
+}
+
+admin::~admin()
+{
+    cout << "admin destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+feedback::feedback(int FeedId, string CustomerName)
+{
+    feedId = FeedId;
+    customerName = CustomerName;
+}
+
+void feedback::displayFeedbacks()
+{
+    cout << "Feedback Id:" << feedId << endl;
+    cout << "customer details:" << customerName << endl;
+   
+}
+
+feedback::~feedback()
+{
+
+    cout << "feedback destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+identityProvider::identityProvider(int pId, string pName)
+{
+    providerId = pId;
+    providerName = pName;
+}
+
+void identityProvider::displayApprovedReport(string CustomerName, int CustomerId)
+{
+    cout << "customer name:" << customerName << endl;
+    cout << "customer id:" << customerId << endl;
+}
+
+void identityProvider::ValidateIDs(string Custemail)
+{
+    custemail = Custemail;
+}
+
+identityProvider::~identityProvider()
+{
+    cout << "identity provider destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+ID::ID(int Id, const char Gender[2], const char First_name[10], const char Last_name[20], string Adress)
+{
+    id = Id;
+    strcpy(gender,Gender);
+    strcpy(first_name, First_name);
+    strcpy(last_name, Last_name);
+    adress = Adress;
+
+}
+
+
+void ID::displayIdDetails()
+{
+    cout << "Id no :" << id << endl;
+    cout << "Gender : " << gender << endl;
+    cout << "Id first name : " << first_name << endl;
+    cout << "Id last name :" << last_name << endl;
+    cout << "Adress : " << adress << endl;
+
+
+}
+
+
+RegisterdCustomer::RegisterdCustomer(int Ctid, string Ctddress, string CtTelno, int Ctage)
+{
+    custId = Ctid;
+    custAdress = Ctddress;
+    custTelno = CtTelno;
+    custAge = Ctage;
+}
+
+void RegisterdCustomer::displayRegisterDetails()
+{
+   
+    cout << "customer id:" << custId << endl;
+    cout << "customer address:" << custAdress << endl;
+    cout << "customer tel-No:" << custTelno << endl;
+    cout << "customer age:" << custAge << endl;
+}
+
+void RegisterdCustomer::getService(string Type)
+{
+    type = Type;
+}
+
+void RegisterdCustomer::makePayment(int Pid)
+{
+    pid = Pid;
+
+}
+
+void RegisterdCustomer::provideFeedback()
+{
+    cout << "User Name :" << name << endl;
+    cout << "FeedBack : " << fb << endl;
+}
+
+void RegisterdCustomer::getIdDetails(){}
+
+
+RegisterdCustomer::~RegisterdCustomer()
+{
+    cout << "registerd customer provider destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+
+form::form(int FormNo)
+{
+    formNo = FormNo;
+}
+
+void form::FormDetails(string adress, string telno, int age, string Stype)
+{
+    Adress = adress;
+    Telno = telno;
+    Age = age;
+    Servicetype = Stype;
+
+}
+
+void form::displayFormDetails()
+{
+    cout << "Adress :" << Adress << endl;
+    cout << "Tel-no : " << Telno << endl;
+    cout << "Age:" << Age << endl;
+    cout << "service type : " << Servicetype << endl;
+
+}
+
+payment::payment(int Ppayid, string Ppaymethod, int PpayAmount)
+{
+    payid = Ppayid;
+    payMethod = Ppaymethod;
+    payAmount = PpayAmount;
+}
+
+void payment::displayPayment()
+{
+    cout << "id" << payid << endl;
+    cout << "method : " << payMethod << endl;
+    cout << "amount : " << payAmount << endl;
+}
+
+
+creditCard::creditCard(int Ppayid, string Ppaymethod, int PpayAmount, int CNo, int CVNo, string expDate) : payment(Ppayid, Ppaymethod, PpayAmount)
+{
+    creNo = CNo;
+    cvNo = CVNo;
+    expdate = expDate;
+}
+
+void creditCard::dotrasaction(){
+   
+}
+
+
+payPal::payPal(int AccId, int Ppayid, string Ppaymethod, int PpayAmount): payment(Ppayid, Ppaymethod, PpayAmount)
+{
+    accId = AccId;
+}
+
+void payPal::dotrasaction(){}
+
+
+debitCard::debitCard(int Ppayid, string Ppaymethod, int PpayAmount, int DebNo, int CVno, string dtype) : payment(Ppayid, Ppaymethod, PpayAmount)
+{
+    debiNo = DebNo;
+    cvNo = CVno;
+    type = dtype;
+}
+
+void debitCard::dotrasaction(){}
+
+
+service::service(string stype, int sNo)
+{
+    serviceType = stype;
+    serviceNo = sNo;
+}
+
+void service::displayService()
+{
+    cout << "service type" << serviceType << endl;
+    cout << "service No" << serviceNo << endl;
+   
+}
+
+normalDay::normalDay(string stype, int sNo, string service_dec) : service(stype, sNo) 
+{
+    service_description = service_dec;
+}
+
+void normalDay::selectService(){}
+
+
+oneDay::oneDay(string stype, int sNo, string service_dec) : service(stype, sNo)
+{
+    service_description = service_dec;
+}
+
+void oneDay::selectService(){}
+
+
+
+int main(void)
+{
+    visitor *v1;
+
+    v1 = new visitor("Inuka", "+94715906662", 21);
+
+    v1->displayVisitorDetails();
+  
+    delete v1;
+
+    accountant* A1;
+    A1 = new accountant("A001", "Nimal");
+    A1->displayaccountantdetails();
+    A1->validatepayment("P001");
+
+    delete A1;
+
+    dataAnalysis* DA1;
+    DA1 = new dataAnalysis("D001", "ridmi");
+    DA1->collectCustomerDetails("gavidu", 1000, "one day service");
+    DA1->displayCustomerDetails();
+
+    delete DA1;
+
+    dataReport* D1;
+    D1 = new dataReport(001, "data", "data report complete");
+    D1->displayDataReport();
+    delete D1;
+
+    approvedReport* Ap1;
+    Ap1 = new approvedReport(1100, "Approved", "report is approved");
+    Ap1->displayapprovedReport();
+
+    delete Ap1;
+
+    admin* Ad1;
+    Ad1 = new admin(100, "sasika");
+    Ad1->replyfeedbacks("001");
+
+    delete Ad1;
+
+    feedback* f1;
+    f1 = new feedback(1111, "lasitha");
+    f1->displayFeedbacks();
+    delete f1;
+
+    identityProvider* I1;
+    I1 = new identityProvider(1102, "pahasara");
+    I1->displayApprovedReport("pawan", 1130);
+    I1->ValidateIDs("pawam@gmail.com");
+
+    delete I1;
+
+    ID* id1;
+    id1 = new ID(0010, "M", "bimsara", "somarathna", "dambulla");
+    id1->displayIdDetails();
+    delete id1;
+
+    RegisterdCustomer* r1;
+    r1 = new RegisterdCustomer(1011, "horana", "0715658234", 24);
+    r1->displayRegisterDetails();
+    r1->getService("normal day");
+    r1->makePayment(1001);
+    r1->provideFeedback();
+    r1->getIdDetails();
+
+    delete r1;
+
+    form* fo1;
+    fo1 = new form(3000);
+    fo1->FormDetails("colombo", "077881536", 25, "normal day");
+    fo1->displayFormDetails();
+
+    delete fo1;
+
+    payment* p1;
+    p1 = new payment(002, "credit card", 2500);
+    p1->displayPayment();
+    
+    delete p1;
+
+    creditCard* C1;
+    C1 = new creditCard(001, "credit", 1278,65781243, 345, "2022");
+    delete C1;
+
+    payPal* pp;
+    pp = new payPal(54863289, 78, "PayPal", 1450);
+    delete pp;
+
+    debitCard* db;
+    db = new debitCard(003, "debit", 13000, 45637282, 345, "VISA");
+    delete db;
+
+    service* s1;
+    s1 = new service("service", 0003);
+    s1->displayService();
+
+    normalDay* N1;
+    N1 = new normalDay("normal day service", 005, "Normal");
+    delete N1;
+
+    oneDay* O1;
+    O1 = new oneDay("one day service", 006, "One day");
+    delete O1;
+}
