@@ -1,0 +1,51 @@
+class service {
+protected:
+    string serviceType;
+    int serviceNo;
+
+public:
+    service(string stype, int sNo);
+    void displayService();
+};
+class normalDay : public service {
+private:
+    string service_description;
+public:
+    normalDay(string stype, int sNo, string service_dec);
+    void selectService();
+
+};
+class oneDay : public service {
+private:
+    string service_description;
+public:
+    oneDay(string stype, int sNo,string service_dec);
+    void selectService();
+};
+
+class service {
+protected:
+    string serviceType;
+    int serviceNo;
+
+public:
+    service(string stype, int sNo);
+    void displayService();
+};
+
+class normalDay : public service {
+private:
+    string service_description;
+public:
+    normalDay(string stype, int sNo, string service_dec);
+    void selectService();
+
+};
+
+class oneDay : public service {
+private:
+    string service_description;
+public:
+    oneDay(string stype, int sNo,string service_dec);
+    void selectService();
+};
