@@ -1,0 +1,169 @@
+#include <stdio.h>
+#include <cstring>
+
+using namespace std;
+
+class RegisterdCustomer {
+private:
+    int custId;
+    string custAdress;
+    string custTelno;
+    int custAge;
+    string type;
+    string fb;
+    string name;
+    int pid;
+
+public:
+    RegisterdCustomer(int Ctid, string Ctddress, string CtTelno, int Ctage);
+    void displayRegisterDetails();
+    void getService(string Type);
+    void makePayment(int Pid);
+    void provideFeedback();
+    void getIdDetails();
+    ~RegisterdCustomer();
+};
+
+RegisterdCustomer::RegisterdCustomer(int Ctid, string Ctddress, string CtTelno, int Ctage)
+{
+    custId = Ctid;
+    custAdress = Ctddress;
+    custTelno = CtTelno;
+    custAge = Ctage;
+}
+
+void RegisterdCustomer::displayRegisterDetails()
+{
+   
+    cout << "customer id:" << custId << endl;
+    cout << "customer address:" << custAdress << endl;
+    cout << "customer tel-No:" << custTelno << endl;
+    cout << "customer age:" << custAge << endl;
+}
+
+void RegisterdCustomer::getService(string Type)
+{
+    type = Type;
+}
+
+void RegisterdCustomer::makePayment(int Pid)
+{
+    pid = Pid;
+
+}
+
+void RegisterdCustomer::provideFeedback()
+{
+    cout << "User Name :" << name << endl;
+    cout << "FeedBack : " << fb << endl;
+}
+
+void RegisterdCustomer::getIdDetails(){}
+
+
+RegisterdCustomer::~RegisterdCustomer()
+{
+    cout << "registerd customer provider destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+class visitor {
+private:
+    char name[20];
+    string telNo;
+    int age;
+
+public:
+    visitor(char Name[20], string Vtelno, int Vage);
+    void displayVisitorDetails();
+    ~visitor();
+};
+
+visitor::visitor(char Name[20], string Vtelno, int Vage)
+{
+    strcpy(name , Name) ;
+    telNo = Vtelno;
+    age = Vage;
+}
+
+void visitor::displayVisitorDetails()
+{
+    cout << "name:" << name <<endl;
+    cout << "tel-no:" << telNo << endl;
+    cout << "age:" << age << endl;  
+}
+
+visitor::~visitor()
+{
+    cout << "visitor destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+class form {
+private:
+    int formNo;
+    string Adress;
+    string Telno;
+    int Age;
+    string Servicetype;
+
+public:
+    form(int FormNo);
+    void FormDetails(string adress, string telno, int age, string Stype);
+    void displayFormDetails();
+};
+
+form::form(int FormNo)
+{
+    formNo = FormNo;
+}
+
+void form::FormDetails(string adress, string telno, int age, string Stype)
+{
+    Adress = adress;
+    Telno = telno;
+    Age = age;
+    Servicetype = Stype;
+
+}
+
+void form::displayFormDetails()
+{
+    cout << "Adress :" << Adress << endl;
+    cout << "Tel-no : " << Telno << endl;
+    cout << "Age:" << Age << endl;
+    cout << "service type : " << Servicetype << endl;
+
+}
+
+class ID {
+private:
+    int id;
+    char gender[2];
+    char first_name[10];
+    char last_name[20];
+    string adress;
+
+public:
+    ID(int Id, const char Gender[2], const char First_name[10], const char Last_name[20], string Adress);
+    void displayIdDetails();
+
+};
+
+ID::ID(int Id, const char Gender[2], const char First_name[10], const char Last_name[20], string Adress)
+{
+    id = Id;
+    strcpy(gender,Gender);
+    strcpy(first_name, First_name);
+    strcpy(last_name, Last_name);
+    adress = Adress;
+}
+
+void ID::displayIdDetails()
+{
+    cout << "Id no :" << id << endl;
+    cout << "Gender : " << gender << endl;
+    cout << "Id first name : " << first_name << endl;
+    cout << "Id last name :" << last_name << endl;
+    cout << "Adress : " << adress << endl;
+}
