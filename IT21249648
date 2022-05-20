@@ -1,0 +1,147 @@
+//.h file
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class accountant {
+private:
+    string accid;
+    char accName[20];
+    string paymentId;
+public:
+    accountant(string Accid, const char AccName[20]);
+    void displayaccountantdetails();
+    void validatepayment(string Payid);
+    ~accountant();
+};
+
+class dataAnalysis {
+private:
+    string dataId;
+    string dataName;
+    char cusName[20];
+    int cusId;
+    string cusServiceType;
+
+
+public:
+    dataAnalysis(string DataId, string DataName);
+    void collectCustomerDetails(const char cusName[20], int CusID, string Stype);
+    void displayCustomerDetails();
+    ~dataAnalysis();
+};
+
+class admin {
+private:
+    int adminId;
+    string adminName;
+    string customerId;
+public:
+    admin(int AdminId, string AdminName);
+    void replyfeedbacks(string CustomerId);
+    ~admin();
+};
+
+class feedback {
+private:
+    int feedId;
+    string customerName;
+public:
+    feedback(int FeedId, string CustomerName);
+    void displayFeedbacks();
+    ~feedback();
+};
+
+// cpp file
+
+accountant::accountant(string Accid, const char AccName[20])
+{
+    accid = Accid;
+    strcpy(accName, AccName);
+}
+
+void accountant::displayaccountantdetails()
+{
+    cout << "Id:" << accid << endl;
+    cout << "name:" << accName << endl;
+    
+}
+
+void accountant::validatepayment(string Payid)
+{
+    paymentId = Payid;
+}
+
+accountant::~accountant()
+{
+    cout << "Accountant destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+dataAnalysis::dataAnalysis(string DataId, string DataName)
+{
+    dataId = DataId;
+    dataId = DataId;
+}
+
+void dataAnalysis::collectCustomerDetails(const char CusName[20], int CusID, string Stype)
+{
+    strcpy(cusName, CusName);
+    cusId = CusID;
+    cusServiceType = Stype;
+
+}
+
+void dataAnalysis::displayCustomerDetails()
+{
+    cout << "customer name:" << cusName << endl;
+    cout << "customer id:" << cusId << endl;
+    cout << "customer service type:" << cusServiceType << endl;
+}
+
+dataAnalysis::~dataAnalysis()
+{
+    cout << "data analysis destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+
+}
+
+admin::admin(int AdminId, string AdminName)
+{
+    adminId = AdminId;
+    adminName = AdminName;
+}
+
+void admin::replyfeedbacks(string CustomerId)
+{
+    customerId = CustomerId;
+}
+
+admin::~admin()
+{
+    cout << "admin destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+feedback::feedback(int FeedId, string CustomerName)
+{
+    feedId = FeedId;
+    customerName = CustomerName;
+}
+
+void feedback::displayFeedbacks()
+{
+    cout << "Feedback Id:" << feedId << endl;
+    cout << "customer details:" << customerName << endl;
+   
+}
+
+feedback::~feedback()
+{
+
+    cout << "feedback destructor running" << endl;
+    cout << "--------------------------------------" << endl;
+}
+
+
+
